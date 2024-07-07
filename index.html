@@ -55,18 +55,33 @@
             opacity: 0;
         }
         #coverContainer {
+            position: relative;
             text-align: center;
             margin-top: 20px;
             transition: opacity 0.3s ease;
         }
+        #gameDisc {
+            max-width: 80px; /* Smaller width */
+            height: auto; /* Maintain aspect ratio */
+            position: absolute;
+            top: 10px; /* Adjust this to position the disc vertically */
+            right: 205px; /* 10px to the right of the cover */
+            border-radius: 50%;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+            z-index: 0;
+        }
         #gameCover {
-            max-width: 100px; /* Adjusted width */
+            max-width: 80px; /* Smaller width */
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             opacity: 0; /* Initially hidden */
             transition: opacity 0.5s ease;
             cursor: pointer; /* Change cursor to pointer */
+            position: relative;
+            z-index: 1;
         }
         footer {
             margin-top: 20px;
@@ -92,6 +107,7 @@
         <h2>Last Played Game:</h2>
         
         <div id="coverContainer">
+            <img id="gameDisc" src="loading.gif" alt="Game Disc">
             <img id="gameCover" src="loading.gif" alt="Game Cover">
         </div>
 
@@ -109,25 +125,40 @@
             .then(data => {
                 const gameId = data.game_data.last_played.game_id;
                 const coverUrl = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
-                const imgElement = document.getElementById('gameCover');
-                imgElement.style.opacity = 1; // Show image after it's loaded
-                imgElement.style.transition = 'none'; // Remove transition for smooth appearance
-                imgElement.onclick = () => {
+                const discUrl = `https://art.gametdb.com/wiiu/discM/EN/${gameId}.png`;
+                const coverElement = document.getElementById('gameCover');
+                const discElement = document.getElementById('gameDisc');
+
+                coverElement.style.opacity = 1; // Show image after it's loaded
+                coverElement.style.transition = 'none'; // Remove transition for smooth appearance
+                coverElement.onclick = () => {
                     window.open(`https://www.gametdb.com/WiiU/${gameId}`);
                 };
 
-                // Preload image to improve transition smoothness
-                const image = new Image();
-                image.src = coverUrl;
-                image.onload = () => {
-                    imgElement.src = coverUrl;
-                    imgElement.style.opacity = 1; // Show image after it's loaded
-                    imgElement.style.transition = 'none'; // Remove transition for smooth appearance
+                // Preload cover image to improve transition smoothness
+                const coverImage = new Image();
+                coverImage.src = coverUrl;
+                coverImage.onload = () => {
+                    coverElement.src = coverUrl;
+                    coverElement.style.opacity = 1; // Show image after it's loaded
+                    coverElement.style.transition = 'none'; // Remove transition for smooth appearance
                 };
                 
-                // If image fails to load, show error placeholder
-                image.onerror = () => {
-                    console.error('Error loading image:', coverUrl);
+                // Preload disc image to improve transition smoothness
+                const discImage = new Image();
+                discImage.src = discUrl;
+                discImage.onload = () => {
+                    discElement.src = discUrl;
+                    discElement.style.opacity = 1; // Show image after it's loaded
+                    discElement.style.transition = 'none'; // Remove transition for smooth appearance
+                };
+
+                // If images fail to load, show error placeholder
+                coverImage.onerror = () => {
+                    console.error('Error loading cover image:', coverUrl);
+                };
+                discImage.onerror = () => {
+                    console.error('Error loading disc image:', discUrl);
                 };
             })
             .catch(error => {
