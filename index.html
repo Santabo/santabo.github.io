@@ -89,7 +89,7 @@
             <img class="avatar avatar-hover" src="https://raw.githubusercontent.com/UserPFP/img/main/Avatars/7/789872551731527690.gif" alt="Discord Avatar">
         </div>
         <h1>Aaron's Portfolio</h1>
-        <h2>Last Played Game</h2>
+        <h2>Last Played Game:</h2>
         
         <div id="coverContainer">
             <img id="gameCover" src="loading.gif" alt="Game Cover">
@@ -128,13 +128,10 @@
                 // If image fails to load, show error placeholder
                 image.onerror = () => {
                     console.error('Error loading image:', coverUrl);
-                    imgElement.src = 'error.gif'; // Placeholder for error image
-                    imgElement.style.opacity = 1; // Show error image
                 };
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
-                document.getElementById('gameCover').src = 'error.gif'; // Placeholder for error image
             });
 
         // JavaScript to handle hover effect for avatars
