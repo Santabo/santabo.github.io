@@ -15,6 +15,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            min-height: 100vh; /* Minimum height to enable scrolling */
         }
         .container {
             max-width: 600px;
@@ -34,12 +35,24 @@
             margin-bottom: 20px;
             color: #eee; /* Lighter text color */
         }
-        .avatar {
+        .avatar-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+        }
+        .avatar, .avatar-hover {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            margin: 20px auto;
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            transition: opacity 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .avatar-hover {
+            opacity: 0;
         }
         #coverContainer {
             text-align: center;
@@ -70,9 +83,12 @@
 </head>
 <body>
     <div class="container">
-        <img class="avatar" src="https://cdn-mii.accounts.nintendo.com/2.0.0/mii_images/b55b2028ffa7765b/63b6d9614a5eacb5ae350f19d41fd8b7640b24d4.png?type=face&width=512" alt="Mii Avatar">
+        <div class="avatar-container">
+            <img class="avatar" src="https://cdn-mii.accounts.nintendo.com/2.0.0/mii_images/b55b2028ffa7765b/63b6d9614a5eacb5ae350f19d41fd8b7640b24d4.png?type=face&width=512" alt="Mii Avatar">
+            <img class="avatar avatar-hover" src="https://raw.githubusercontent.com/UserPFP/img/main/Avatars/7/789872551731527690.gif" alt="Discord Avatar">
+        </div>
         <h1>Aaron's Portfolio</h1>
-		<h2>Last Played Game</h2>
+        <h2>Last Played Game</h2>
         
         <div id="coverContainer">
             <img id="gameCover" src="loading.gif" alt="Game Cover">
@@ -93,11 +109,6 @@
                 const gameId = data.game_data.last_played.game_id;
                 const coverUrl = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
                 const imgElement = document.getElementById('gameCover');
-                imgElement.style.opacity = 1; // Show image after it's loaded
-                imgElement.style.transition = 'none'; // Remove transition for smooth appearance
-                imgElement.onclick = () => {
-                    window.open(`https://www.gametdb.com/WiiU/${gameId}`);
-                };
                 
                 // Preload image to improve transition smoothness
                 const image = new Image();
@@ -119,6 +130,21 @@
                 console.error('Error fetching data:', error);
                 document.getElementById('gameCover').src = 'error.gif'; // Placeholder for error image
             });
+
+        // JavaScript to handle hover effect for avatars
+        const avatarContainer = document.querySelector('.avatar-container');
+        const avatar = document.querySelector('.avatar');
+        const avatarHover = document.querySelector('.avatar-hover');
+
+        avatarContainer.addEventListener('mouseenter', () => {
+            avatar.style.opacity = 0;
+            avatarHover.style.opacity = 1;
+        });
+
+        avatarContainer.addEventListener('mouseleave', () => {
+            avatar.style.opacity = 1;
+            avatarHover.style.opacity = 0;
+        });
     </script>
 </body>
 </html>
