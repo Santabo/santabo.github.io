@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aaron's Portfolio - Last Played Game Cover</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #1f1f1f; /* Dark background */
+            color: #ccc; /* Light text */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+            background-color: #333; /* Darker container background */
+            box-shadow: 0 0 15px rgba(0,0,0,0.4);
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #eee; /* Lighter text color */
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px auto;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        #coverContainer {
+            text-align: center;
+            margin-top: 20px;
+            transition: opacity 0.3s ease;
+        }
+        #gameCover {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease;
+        }
+        footer {
+            margin-top: 20px;
+            color: #888; /* Lighter footer text */
+        }
+        footer a {
+            color: #ddd; /* Lighter link color */
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        footer a:hover {
+            color: #fff; /* White on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img class="avatar" src="https://cdn-mii.accounts.nintendo.com/2.0.0/mii_images/b55b2028ffa7765b/63b6d9614a5eacb5ae350f19d41fd8b7640b24d4.png?type=face&width=512" alt="Mii Avatar">
+        <h1>Aaron's Portfolio</h1>
+		<h2>Last Played Game</h2>
+        
+        <div id="coverContainer">
+            <img id="gameCover" src="loading.gif" alt="Game Cover">
+        </div>
+
+        <footer>
+            Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Data from <a href="https://tag.rc24.xyz/api/user/789872551731527690" target="_blank">RC24 API</a>
+        </footer>
+    </div>
+
+    <script>
+        const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
+        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
+        fetch(proxyUrl + apiUrl)
+            .then(response => response.json())
+            .then(data => {
+                const gameId = data.game_data.last_played.game_id;
+                const coverUrl = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
+                const imgElement = document.getElementById('gameCover');
+                
+                // Preload image to improve transition smoothness
+                const image = new Image();
+                image.src = coverUrl;
+                image.onload = () => {
+                    imgElement.src = coverUrl;
+                    imgElement.style.opacity = 1; // Show image after it's loaded
+                };
+                
+                // If image fails to load, show error placeholder
+                image.onerror = () => {
+                    console.error('Error loading image:', coverUrl);
+                    imgElement.src = 'error.gif'; // Placeholder for error image
+                    imgElement.style.opacity = 1; // Show error image
+                };
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+                document.getElementById('gameCover').src = 'error.gif'; // Placeholder for error image
+            });
+    </script>
+</body>
+</html>
