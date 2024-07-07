@@ -15,7 +15,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
         .container {
             max-width: 600px;
@@ -25,10 +24,9 @@
             box-shadow: 0 0 15px rgba(0,0,0,0.4);
             border-radius: 10px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease;
         }
         .container:hover {
-            transform: translateY(-5px);
             box-shadow: 0 5px 15px rgba(0,0,0,0.5);
         }
         h1 {
@@ -49,8 +47,8 @@
             transition: opacity 0.3s ease;
         }
         #gameCover {
-            max-width: 100%;
-            height: auto;
+            max-width: 100px; /* Adjusted width */
+            height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             opacity: 0; /* Initially hidden */
@@ -95,6 +93,11 @@
                 const gameId = data.game_data.last_played.game_id;
                 const coverUrl = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
                 const imgElement = document.getElementById('gameCover');
+                imgElement.style.opacity = 1; // Show image after it's loaded
+                imgElement.style.transition = 'none'; // Remove transition for smooth appearance
+                imgElement.onclick = () => {
+                    window.open(`https://www.gametdb.com/WiiU/${gameId}`);
+                };
                 
                 // Preload image to improve transition smoothness
                 const image = new Image();
@@ -102,6 +105,7 @@
                 image.onload = () => {
                     imgElement.src = coverUrl;
                     imgElement.style.opacity = 1; // Show image after it's loaded
+                    imgElement.style.transition = 'none'; // Remove transition for smooth appearance
                 };
                 
                 // If image fails to load, show error placeholder
