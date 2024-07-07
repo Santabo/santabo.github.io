@@ -65,7 +65,7 @@
             height: auto; /* Maintain aspect ratio */
             position: absolute;
             top: 10px; /* Adjust this to position the disc vertically */
-            right: 205px; /* 10px to the right of the cover */
+            left: 90px; /* 10px to the right of the cover */
             border-radius: 50%;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             opacity: 0; /* Initially hidden */
@@ -124,7 +124,8 @@
             .then(response => response.json())
             .then(data => {
                 const gameId = data.game_data.last_played.game_id;
-                const coverUrl = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
+                const coverUrlEN = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
+                const coverUrlUS = `https://art.gametdb.com/wiiu/cover3D/US/${gameId}.png`;
                 const discUrl = `https://art.gametdb.com/wiiu/discM/EN/${gameId}.png`;
                 const coverElement = document.getElementById('gameCover');
                 const discElement = document.getElementById('gameDisc');
@@ -137,11 +138,23 @@
 
                 // Preload cover image to improve transition smoothness
                 const coverImage = new Image();
-                coverImage.src = coverUrl;
+                coverImage.src = coverUrlEN;
                 coverImage.onload = () => {
-                    coverElement.src = coverUrl;
+                    coverElement.src = coverUrlEN;
                     coverElement.style.opacity = 1; // Show image after it's loaded
                     coverElement.style.transition = 'none'; // Remove transition for smooth appearance
+                };
+                coverImage.onerror = () => {
+                    // If EN image fails to load, try loading US image
+                    coverImage.src = coverUrlUS;
+                    coverImage.onload = () => {
+                        coverElement.src = coverUrlUS;
+                        coverElement.style.opacity = 1; // Show image after it's loaded
+                        coverElement.style.transition = 'none'; // Remove transition for smooth appearance
+                    };
+                    coverImage.onerror = () => {
+                        console.error('Error loading cover image:', coverUrlUS);
+                    };
                 };
                 
                 // Preload disc image to improve transition smoothness
@@ -151,11 +164,6 @@
                     discElement.src = discUrl;
                     discElement.style.opacity = 1; // Show image after it's loaded
                     discElement.style.transition = 'none'; // Remove transition for smooth appearance
-                };
-
-                // If images fail to load, show error placeholder
-                coverImage.onerror = () => {
-                    console.error('Error loading cover image:', coverUrl);
                 };
                 discImage.onerror = () => {
                     console.error('Error loading disc image:', discUrl);
