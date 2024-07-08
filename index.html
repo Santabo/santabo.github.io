@@ -121,7 +121,12 @@
         const proxyUrl = 'https://santabo-github-io.vercel.app/api/proxy?apiUrl=';
 
         fetch(proxyUrl + encodeURIComponent(apiUrl))
-            .then(response => response.json())
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.json();
+            })
             .then(data => {
                 const gameId = data.game_data.last_played.game_id;
                 const coverUrlEN = `https://art.gametdb.com/wiiu/cover3D/EN/${gameId}.png`;
