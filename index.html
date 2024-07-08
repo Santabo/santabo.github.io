@@ -118,9 +118,9 @@
 
     <script>
         const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
-        const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const proxyUrl = 'https://santabo-github-io.vercel.app/api/proxy?apiUrl=';
 
-        fetch(proxyUrl + apiUrl)
+        fetch(proxyUrl + encodeURIComponent(apiUrl))
             .then(response => response.json())
             .then(data => {
                 const gameId = data.game_data.last_played.game_id;
