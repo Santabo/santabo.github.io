@@ -119,6 +119,30 @@
     <script>
         const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
         const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+        const imageLoadTimeout = 15000; // 15 seconds
+
+        // Function to handle image loading with timeout
+        function loadImageWithTimeout(url, element) {
+            return new Promise((resolve, reject) => {
+                const image = new Image();
+                const timeout = setTimeout(() => {
+                    reject(new Error('Image loading timed out'));
+                }, imageLoadTimeout);
+
+                image.onload = () => {
+                    clearTimeout(timeout);
+                    resolve(image);
+                };
+
+                image.onerror = () => {
+                    clearTimeout(timeout);
+                    reject(new Error('Failed to load image'));
+                };
+
+                image.src = url;
+                element.src = url; // Immediately set src to trigger loading
+            });
+        }
 
         fetch(proxyUrl + apiUrl)
             .then(response => response.json())
@@ -130,44 +154,34 @@
                 const coverElement = document.getElementById('gameCover');
                 const discElement = document.getElementById('gameDisc');
 
-                coverElement.style.opacity = 1; // Show image after it's loaded
-                coverElement.style.transition = 'none'; // Remove transition for smooth appearance
-                coverElement.onclick = () => {
-                    window.open(`https://www.gametdb.com/WiiU/${gameId}`);
-                };
-
-                // Preload cover image to improve transition smoothness
-                const coverImage = new Image();
-                coverImage.src = coverUrlEN;
-                coverImage.onload = () => {
-                    coverElement.src = coverUrlEN;
-                    coverElement.style.opacity = 1; // Show image after it's loaded
-                    coverElement.style.transition = 'none'; // Remove transition for smooth appearance
-                };
-                coverImage.onerror = () => {
-                    // If EN image fails to load, try loading US image
-                    coverImage.src = coverUrlUS;
-                    coverImage.onload = () => {
-                        coverElement.src = coverUrlUS;
+                // Preload cover image
+                loadImageWithTimeout(coverUrlEN, coverElement)
+                    .then(() => {
                         coverElement.style.opacity = 1; // Show image after it's loaded
                         coverElement.style.transition = 'none'; // Remove transition for smooth appearance
-                    };
-                    coverImage.onerror = () => {
-                        console.error('Error loading cover image:', coverUrlUS);
-                    };
-                };
-                
-                // Preload disc image to improve transition smoothness
-                const discImage = new Image();
-                discImage.src = discUrl;
-                discImage.onload = () => {
-                    discElement.src = discUrl;
-                    discElement.style.opacity = 1; // Show image after it's loaded
-                    discElement.style.transition = 'none'; // Remove transition for smooth appearance
-                };
-                discImage.onerror = () => {
-                    console.error('Error loading disc image:', discUrl);
-                };
+                    })
+                    .catch(error => {
+                        console.error('Error loading cover image:', error.message);
+                        // Try loading US image if EN fails
+                        loadImageWithTimeout(coverUrlUS, coverElement)
+                            .then(() => {
+                                coverElement.style.opacity = 1; // Show image after it's loaded
+                                coverElement.style.transition = 'none'; // Remove transition for smooth appearance
+                            })
+                            .catch(error => {
+                                console.error('Error loading US cover image:', error.message);
+                            });
+                    });
+
+                // Preload disc image
+                loadImageWithTimeout(discUrl, discElement)
+                    .then(() => {
+                        discElement.style.opacity = 1; // Show image after it's loaded
+                        discElement.style.transition = 'none'; // Remove transition for smooth appearance
+                    })
+                    .catch(error => {
+                        console.error('Error loading disc image:', error.message);
+                    });
             })
             .catch(error => {
                 console.error('Error fetching data:', error);
