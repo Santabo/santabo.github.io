@@ -107,8 +107,10 @@
         <h2>Last Played Game:</h2>
         
         <div id="coverContainer">
-            <img id="gameDisc" src="loading.gif" alt="Game Disc">
-            <img id="gameCover" src="loading.gif" alt="Game Cover">
+            <img id="gameDisc" alt="Game Disc">
+            <a id="gameLink" href="#" target="_blank">
+                <img id="gameCover" alt="Game Cover">
+            </a>
         </div>
 
         <footer>
@@ -117,39 +119,47 @@
     </div>
 
     <script>
-        const fetchAndCacheData = async () => {
-            const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
-            const cacheUrl = 'https://raw.githubusercontent.com/Santabo/riitagcachescript/main/cache.json';
+        const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
+        const corsAnywhereUrl = 'https://cors-anywhere.herokuapp.com/';
 
+        const fetchAndUpdateImages = async () => {
             try {
-                const response = await fetch(apiUrl, { mode: 'cors' });
+                const response = await fetch(corsAnywhereUrl + apiUrl);
                 if (!response.ok) {
                     throw new Error('Failed to fetch API data');
                 }
 
                 const data = await response.json();
+                const gameDisc = document.getElementById('gameDisc');
+                const gameCover = document.getElementById('gameCover');
+                const gameLink = document.getElementById('gameLink');
 
-                // Update cache.json
-                const cacheResponse = await fetch(cacheUrl, {
-                    method: 'PUT',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
+                if (data.game_data && data.game_data.last_played && data.game_data.last_played.cover_url) {
+                    gameCover.src = data.game_data.last_played.cover_url;
 
-                if (!cacheResponse.ok) {
-                    throw new Error('Failed to update cache file');
+                    // Extract game ID from the cover URL
+                    const coverUrlParts = data.game_data.last_played.cover_url.split('/');
+                    const gameId = coverUrlParts[coverUrlParts.length - 1].split('.')[0];
+
+                    // Construct the disc image URL
+                    gameDisc.src = `https://art.gametdb.com/wiiu/discM/EN/${gameId}.png`;
+
+                    // Set the GameTDB link URL
+                    gameLink.href = `https://www.gametdb.com/WiiU/${gameId}`;
+                } else {
+                    throw new Error('Invalid data format from API');
                 }
 
-                console.log('API data cached successfully');
+                // Fade in the images
+                gameDisc.style.opacity = 1;
+                gameCover.style.opacity = 1;
             } catch (error) {
-                console.error('Error caching API data:', error.message);
+                console.error('Error fetching and updating images:', error.message);
             }
         };
 
-        // Call fetchAndCacheData function on page load
-        fetchAndCacheData();
+        // Call fetchAndUpdateImages function on page load
+        fetchAndUpdateImages();
 
         // JavaScript to handle hover effect for avatars
         const avatarContainer = document.querySelector('.avatar-container');
