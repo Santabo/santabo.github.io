@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron's Portfolio - Last Played Game Cover</title>
+    <title>Aaron's Portfolio - LinkTag</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -54,34 +54,17 @@
         .avatar-hover {
             opacity: 0;
         }
-        #coverContainer {
-            position: relative;
-            text-align: center;
+        #linkTag {
             margin-top: 20px;
             transition: opacity 0.3s ease;
         }
-        #gameDisc {
-            max-width: 80px; /* Smaller width */
-            height: auto; /* Maintain aspect ratio */
-            position: absolute;
-            top: 10px; /* Adjust this to position the disc vertically */
-            right: 205px; /* 10px to the right of the cover */
-            border-radius: 50%;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease;
-            z-index: 0;
-        }
-        #gameCover {
-            max-width: 80px; /* Smaller width */
+        #linkTag img {
+            max-width: 100%;
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             opacity: 0; /* Initially hidden */
             transition: opacity 0.5s ease;
-            cursor: pointer; /* Change cursor to pointer */
-            position: relative;
-            z-index: 1;
         }
         footer {
             margin-top: 20px;
@@ -104,12 +87,11 @@
             <img class="avatar avatar-hover" src="https://raw.githubusercontent.com/UserPFP/img/main/Avatars/7/789872551731527690.gif" alt="Discord Avatar">
         </div>
         <h1>Aaron's Portfolio</h1>
-        <h2>Last Played Game:</h2>
+        <h2>LinkTag:</h2>
         
-        <div id="coverContainer">
-            <img id="gameDisc" alt="Game Disc">
-            <a id="gameLink" href="#" target="_blank">
-                <img id="gameCover" alt="Game Cover">
+        <div id="linkTag">
+            <a id="linkTagLink" href="https://tag.rc24.xyz/789872551731527690/tag.max.png" target="_blank">
+                <img id="linkTagImage" src="https://tag.rc24.xyz/789872551731527690/tag.max.png" alt="LinkTag Image">
             </a>
         </div>
 
@@ -119,52 +101,6 @@
     </div>
 
     <script>
-        const apiUrl = 'https://tag.rc24.xyz/api/user/789872551731527690';
-
-        const fetchAndUpdateImages = async () => {
-            try {
-                const response = await fetch(apiUrl, {
-                    headers: {
-                        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-                        'Referer': 'https://santabo-github-io.vercel.app'
-                        // Add other headers as needed
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error('Failed to fetch API data');
-                }
-
-                const data = await response.json();
-                const gameDisc = document.getElementById('gameDisc');
-                const gameCover = document.getElementById('gameCover');
-                const gameLink = document.getElementById('gameLink');
-
-                if (data.game_data && data.game_data.last_played && data.game_data.last_played.cover_url) {
-                    gameCover.src = data.game_data.last_played.cover_url;
-
-                    // Extract game ID from the API data
-                    const gameId = data.game_data.last_played.game_id;
-
-                    // Construct the disc image URL
-                    gameDisc.src = `https://art.gametdb.com/wiiu/discM/EN/${gameId}.png`;
-
-                    // Set the GameTDB link URL
-                    gameLink.href = `https://www.gametdb.com/WiiU/${gameId}`;
-                } else {
-                    throw new Error('Invalid data format from API');
-                }
-
-                // Fade in the images
-                gameDisc.style.opacity = 1;
-                gameCover.style.opacity = 1;
-            } catch (error) {
-                console.error('Error fetching and updating images:', error.message);
-            }
-        };
-
-        // Call fetchAndUpdateImages function on page load
-        fetchAndUpdateImages();
-
         // JavaScript to handle hover effect for avatars
         const avatarContainer = document.querySelector('.avatar-container');
         const avatar = document.querySelector('.avatar');
@@ -179,6 +115,10 @@
             avatar.style.opacity = 1;
             avatarHover.style.opacity = 0;
         });
+
+        // Fade in the LinkTag image
+        const linkTagImage = document.getElementById('linkTagImage');
+        linkTagImage.style.opacity = 1;
     </script>
 </body>
 </html>
