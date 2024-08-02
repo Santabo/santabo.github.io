@@ -142,9 +142,8 @@
                 if (data.game_data && data.game_data.last_played && data.game_data.last_played.cover_url) {
                     gameCover.src = data.game_data.last_played.cover_url;
 
-                    // Extract game ID from the cover URL
-                    const coverUrlParts = data.game_data.last_played.cover_url.split('/');
-                    const gameId = coverUrlParts[coverUrlParts.length - 1].split('.')[0];
+                    // Extract game ID from the API data
+                    const gameId = data.game_data.last_played.game_id;
 
                     // Construct the disc image URL
                     gameDisc.src = `https://art.gametdb.com/wiiu/discM/EN/${gameId}.png`;
