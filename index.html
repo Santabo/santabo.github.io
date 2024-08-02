@@ -41,6 +41,20 @@
             margin-bottom: 20px;
             color: #ddd; /* Slightly lighter text color */
         }
+        .avatar-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+        .avatar-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
         #linkTag {
             position: relative;
             text-align: center;
@@ -74,6 +88,12 @@
 <body>
     <div class="container">
         <h1>Aaron's Portfolio</h1>
+
+        <!-- Avatar/Profile Picture -->
+        <div class="avatar-container">
+            <img src="https://cdn-mii.accounts.nintendo.com/2.0.0/mii_images/b55b2028ffa7765b/63b6d9614a5eacb5ae350f19d41fd8b7640b24d4.png?type=face&width=512" alt="Profile Picture">
+        </div>
+
         <h2>LinkTag:</h2>
         
         <div id="linkTag">
@@ -88,7 +108,7 @@
         </div>
 
         <footer>
-            Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Data from <a href="https://tag.rc24.xyz/api/user/789872551731527690" target="_blank">RC24 API</a> | Facts from <a href="https://uselessfacts.jsph.pl/api/v2/facts/today" target="_blank">Useless Facts API</a> | Hosted on <a href="https://github.com/Santabo/santabo.github.io" target="_blank">GitHub</a>
+            Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Facts from <a href="https://uselessfacts.jsph.pl/api/v2/facts/today" target="_blank">Useless Facts API</a> | Hosted on <a href="https://github.com/Santabo/santabo.github.io" target="_blank">GitHub</a>
         </footer>
     </div>
 
