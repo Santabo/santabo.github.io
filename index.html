@@ -20,41 +20,60 @@
         .container {
             max-width: 600px;
             width: 100%;
-            padding: 20px;
-            background-color: #333; /* Darker container background */
-            box-shadow: 0 0 15px rgba(0,0,0,0.4);
-            border-radius: 10px;
+            padding: 30px;
+            background-color: #292b2c; /* Slightly lighter dark background */
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            border-radius: 15px;
             text-align: center;
-            transition: box-shadow 0.3s ease;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
         }
         .container:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+            transform: translateY(-5px);
         }
         h1 {
             font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #fff; /* White text color */
+        }
+        h2 {
+            font-size: 1.5rem;
             margin-bottom: 20px;
-            color: #eee; /* Lighter text color */
+            color: #ddd; /* Slightly lighter text color */
         }
         .avatar-container {
             position: relative;
-            width: 120px;
-            height: 120px;
+            width: 150px;
+            height: 150px;
             margin: 0 auto 20px;
-        }
-        .avatar, .avatar-hover {
-            width: 120px;
-            height: 120px;
+            overflow: hidden;
             border-radius: 50%;
             box-shadow: 0 0 15px rgba(0,0,0,0.5);
-            transition: opacity 0.3s ease;
+        }
+        .avatar, .avatar-hover {
+            width: 100%;
+            height: 100%;
+            transition: opacity 0.3s ease, transform 0.3s ease;
             position: absolute;
             top: 0;
             left: 0;
+            object-fit: cover;
         }
         .avatar-hover {
             opacity: 0;
+            transform: scale(1.1);
+        }
+        .avatar-container:hover .avatar-hover {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .avatar-container:hover .avatar {
+            opacity: 0;
+            transform: scale(0.9);
         }
         #linkTag {
+            position: relative;
+            text-align: center;
             margin-top: 20px;
             transition: opacity 0.3s ease;
         }
@@ -67,7 +86,7 @@
             transition: opacity 0.5s ease;
         }
         footer {
-            margin-top: 20px;
+            margin-top: 30px;
             color: #888; /* Lighter footer text */
         }
         footer a {
