@@ -77,23 +77,12 @@
             margin-top: 20px;
             transition: opacity 0.3s ease;
         }
-        #linkTag img {
+        #linkTag img, #randomDuck img {
             max-width: 100%;
             height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease;
-        }
-        #randomDuck {
-            margin-top: 20px;
-        }
-        #randomDuck img {
-            max-width: 100%;
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            opacity: 0; /* Initially hidden */
+            opacity: 1; /* Initially visible */
             transition: opacity 0.5s ease;
         }
         footer {
@@ -162,8 +151,11 @@
                 const data = await response.json();
                 const duckImageUrl = data.url;
 
-                document.getElementById('duckImage').src = duckImageUrl;
-                document.getElementById('duckImage').style.opacity = 1;
+                const duckImage = document.getElementById('duckImage');
+                duckImage.src = duckImageUrl;
+                duckImage.onload = () => {
+                    duckImage.style.opacity = 1;
+                };
             } catch (error) {
                 console.error('Error fetching duck image:', error);
             }
