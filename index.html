@@ -3,65 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron's Portfolio - LinkTag</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: #1f1f1f; /* Dark background */
-            color: #ccc; /* Light text */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Minimum height to enable scrolling */
-        }
-        .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            background-color: #292b2c; /* Slightly lighter dark background */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            border-radius: 15px;
-            text-align: center;
-            transition: box-shadow 0.3s ease, transform 0.3s ease;
-        }
-        .container:hover {
-            box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-            transform: translateY(-5px);
-        }
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #fff; /* White text color */
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #ddd; /* Slightly lighter text color */
-        }
-        .avatar-container {
-            position: relative;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 20px;
-            overflow: hidden;
-            border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
-        }
-        .avatar, .avatar-hover {
-            width: 100%;
-            height: 100%;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            position: absolute;
-            top: 0;
-            left: 0;
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron's Portfolio - LinkTag & Random Duck</title>
     <style>
         body {
@@ -230,65 +171,6 @@
 
         // Call fetchRandomDuck function on page load
         fetchRandomDuck();
-    </script>
-</body>
-</html>
-            object-fit: cover;
-        }
-        .avatar-hover {
-            opacity: 0;
-            transform: scale(1.1);
-        }
-        .avatar-container:hover .avatar-hover {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .avatar-container:hover .avatar {
-            opacity: 0;
-            transform: scale(0.9);
-        }
-        #linkTag {
-            position: relative;
-            text-align: center;
-            margin-top: 20px;
-            transition: opacity 0.3s ease;
-        }
-        #linkTag img {
-            max-width: 100%;
-            height: auto; /* Maintain aspect ratio */
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            opacity: 0; /* Initially hidden */
-            transition: opacity 0.5s ease;
-        }
-        footer {
-            margin-top: 30px;
-            color: #888; /* Lighter footer text */
-        }
-        footer a {
-            color: #ddd; /* Lighter link color */
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-        footer a:hover {
- handle hover effect for avatars
-        const avatarContainer = document.querySelector('.avatar-container');
-        const avatar = document.querySelector('.avatar');
-        const avatarHover = document.querySelector('.avatar-hover');
-
-        avatarContainer.addEventListener('mouseenter', () => {
-            avatar.style.opacity = 0;
-            avatarHover.style.opacity = 1;
-        });
-
-        avatarContainer.addEventListener('mouseleave', () => {
-            avatar.style.opacity = 1;
-            avatarHover.style.opacity = 0;
-        });
-
-        // Fade in the LinkTag image
-        const linkTagImage = document.getElementById('linkTagImage');
-        linkTagImage.style.opacity = 1;
     </script>
 </body>
 </html>
