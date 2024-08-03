@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aaron's Portfolio - LinkTag & Random Fact</title>
+    <title>Aaron's Portfolio</title>
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -25,11 +25,11 @@
             box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             border-radius: 15px;
             text-align: center;
-            transition: box-shadow 0.4s ease, transform 0.4s ease;
+            /* No transform on hover for container to keep main content stationary */
+            transition: box-shadow 0.4s ease;
         }
         .container:hover {
             box-shadow: 0 12px 40px rgba(0,0,0,0.6);
-            transform: translateY(-10px);
         }
         h1 {
             font-size: 2.5rem;
@@ -124,6 +124,7 @@
         <h2>LinkTag:</h2>
         
         <div id="linkTag">
+            <a id="linkTagLink">
                 <img id="linkTagImage" src="https://tag.rc24.xyz/789872551731527690/tag.max.png" alt="LinkTag Image">
             </a>
         </div>
@@ -162,4 +163,4 @@
         fetchRandomFact();
     </script>
 </body>
-</html>
+    </html>
