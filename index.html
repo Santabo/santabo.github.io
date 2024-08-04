@@ -4,116 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron's Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #1f1f1f; /* Dark background */
-            color: #ccc; /* Light text */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh; /* Minimum height to enable scrolling */
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            margin: 0 1rem;
+            text-decoration: none;
+            font-weight: bold;
         }
         .container {
-            max-width: 600px;
-            width: 100%;
-            padding: 30px;
-            background-color: #292b2c; /* Slightly lighter dark background */
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            border-radius: 15px;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
             text-align: center;
-            /* No transform on hover for container to keep main content stationary */
-            transition: box-shadow 0.4s ease;
-        }
-        .container:hover {
-            box-shadow: 0 12px 40px rgba(0,0,0,0.6);
         }
         h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            color: #fff; /* White text color */
-            transition: color 0.3s ease;
-        }
-        h1:hover {
-            color: #f0f0f0; /* Slightly lighter white on hover */
-        }
-        h2 {
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            color: #ddd; /* Slightly lighter text color */
-            transition: color 0.3s ease;
-        }
-        h2:hover {
-            color: #fff; /* White text on hover */
+            color: #2c3e50;
         }
         .avatar-container {
-            position: relative;
             width: 150px;
             height: 150px;
-            margin: 0 auto 20px;
+            margin: 1rem auto;
             overflow: hidden;
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-        .avatar-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0,0,0,0.7);
         }
         .avatar-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: opacity 0.4s ease;
         }
-        #linkTag {
-            position: relative;
-            text-align: center;
-            margin-top: 20px;
+        .avatar-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-top: 1rem;
         }
         #linkTag a {
             display: inline-block;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        #linkTag a:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            margin-top: 1rem;
+            text-decoration: none;
         }
         #linkTag img {
             max-width: 100%;
-            height: auto; /* Maintain aspect ratio */
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-            opacity: 1; /* Ensure the image is visible */
-            transition: opacity 0.4s ease, transform 0.4s ease;
-        }
-        #linkTag img:hover {
-            opacity: 0.9;
-            transform: scale(1.02);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
         #randomFact {
-            margin-top: 20px;
-            color: #ddd; /* Light text for facts */
+            margin-top: 2rem;
+        }
+        #randomFact p {
+            font-size: 1rem;
+            color: #555;
         }
         footer {
-            margin-top: 30px;
-            color: #888; /* Lighter footer text */
+            margin-top: 2rem;
+            padding: 1rem 0;
+            color: #777;
+            background-color: #f4f4f9;
+            text-align: center;
         }
         footer a {
-            color: #ddd; /* Lighter link color */
+            color: #2c3e50;
             text-decoration: none;
-            transition: color 0.3s ease;
+            margin: 0 0.5rem;
         }
         footer a:hover {
-            color: #fff; /* White on hover */
+            text-decoration: underline;
+        }
+        .social-icons a {
+            margin: 0 0.5rem;
+            color: #2c3e50;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+        .social-icons a:hover {
+            color: #3498db;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="navbar">
+        <a href="#home">Home</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <div class="container" id="home">
         <h1>Aaron's Portfolio</h1>
 
         <!-- Avatar/Profile Picture -->
@@ -122,7 +124,6 @@
         </div>
 
         <h2>LinkTag:</h2>
-        
         <div id="linkTag">
             <a id="linkTagLink">
                 <img id="linkTagImage" src="https://tag.rc24.xyz/789872551731527690/tag.max.png" alt="LinkTag Image">
@@ -134,11 +135,18 @@
             <p id="factText">Loading...</p>
         </div>
 
-        <footer>
-            Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Facts from <a href="https://uselessfacts.jsph.pl/api/v2/facts/today" target="_blank">Useless Facts API</a> | Hosted on <a href="https://github.com/Santabo/santabo.github.io" target="_blank">GitHub</a>
-        </footer>
+        <div class="social-icons">
+            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+        </div>
     </div>
 
+    <footer>
+        Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Facts from <a href="https://uselessfacts.jsph.pl/api/v2/facts/today" target="_blank">Useless Facts API</a> | Hosted on <a href="https://github.com/Santabo/santabo.github.io" target="_blank">GitHub</a>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
         // JavaScript to fetch and display a random fact
         const fetchRandomFact = async () => {
@@ -163,4 +171,4 @@
         fetchRandomFact();
     </script>
 </body>
-    </html>
+</html>
