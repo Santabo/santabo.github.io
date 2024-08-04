@@ -10,112 +10,123 @@
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f4f4f9;
-            color: #333;
-        }
-        .navbar {
-            background-color: #2c3e50;
-            color: white;
-            padding: 1rem;
-            text-align: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-        .navbar a {
-            color: white;
-            margin: 0 1rem;
-            text-decoration: none;
-            font-weight: bold;
+            background-color: #121212;
+            color: #e0e0e0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
         .container {
             max-width: 800px;
-            margin: 2rem auto;
-            padding: 2rem;
-            background-color: white;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            width: 100%;
+            padding: 30px;
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            border-radius: 15px;
             text-align: center;
+            transition: box-shadow 0.4s ease;
+        }
+        .container:hover {
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
         }
         h1 {
             font-size: 2.5rem;
-            color: #2c3e50;
+            margin-bottom: 20px;
+            color: #ffffff;
+            transition: color 0.3s ease;
+        }
+        h1:hover {
+            color: #bdbdbd;
+        }
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #e0e0e0;
+            transition: color 0.3s ease;
+        }
+        h2:hover {
+            color: #ffffff;
         }
         .avatar-container {
+            position: relative;
             width: 150px;
             height: 150px;
-            margin: 1rem auto;
+            margin: 0 auto 20px;
             overflow: hidden;
             border-radius: 50%;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
             transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .avatar-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
         }
         .avatar-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: opacity 0.4s ease;
         }
-        .avatar-container:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-        }
-        h2 {
-            font-size: 1.8rem;
-            color: #2c3e50;
-            margin-top: 1rem;
+        #linkTag {
+            position: relative;
+            text-align: center;
+            margin-top: 20px;
         }
         #linkTag a {
             display: inline-block;
-            margin-top: 1rem;
-            text-decoration: none;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        #linkTag a:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
         }
         #linkTag img {
             max-width: 100%;
+            height: auto;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            opacity: 1;
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        #linkTag img:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
         }
         #randomFact {
-            margin-top: 2rem;
+            margin-top: 20px;
+            color: #e0e0e0;
         }
         #randomFact p {
             font-size: 1rem;
-            color: #555;
+            color: #bdbdbd;
         }
         footer {
-            margin-top: 2rem;
-            padding: 1rem 0;
-            color: #777;
-            background-color: #f4f4f9;
-            text-align: center;
+            margin-top: 30px;
+            color: #bdbdbd;
         }
         footer a {
-            color: #2c3e50;
+            color: #e0e0e0;
             text-decoration: none;
-            margin: 0 0.5rem;
+            transition: color 0.3s ease;
         }
         footer a:hover {
-            text-decoration: underline;
+            color: #ffffff;
         }
         .social-icons a {
             margin: 0 0.5rem;
-            color: #2c3e50;
+            color: #e0e0e0;
             text-decoration: none;
             font-size: 1.5rem;
             transition: color 0.3s ease;
         }
         .social-icons a:hover {
-            color: #3498db;
+            color: #ffffff;
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <a href="#home">Home</a>
-        <a href="#projects">Projects</a>
-        <a href="#contact">Contact</a>
-    </div>
-
-    <div class="container" id="home">
+    <div class="container">
         <h1>Aaron's Portfolio</h1>
 
         <!-- Avatar/Profile Picture -->
@@ -136,15 +147,9 @@
         </div>
 
         <div class="social-icons">
-            <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin"></i></a>
-            <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/santabo" target="_blank"><i class="fab fa-github"></i></a>
         </div>
     </div>
-
-    <footer>
-        Powered by <a href="https://openai.com" target="_blank">OpenAI</a> | Facts from <a href="https://uselessfacts.jsph.pl/api/v2/facts/today" target="_blank">Useless Facts API</a> | Hosted on <a href="https://github.com/Santabo/santabo.github.io" target="_blank">GitHub</a>
-    </footer>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
