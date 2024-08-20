@@ -16,7 +16,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden; /* Only hide horizontal overflow */
         }
         .container {
             max-width: 800px;
@@ -26,6 +26,7 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
             border-radius: 15px;
             text-align: center;
+            margin: 20px; /* Allow space for scrolling */
         }
         h1 {
             font-size: 2.5rem;
