@@ -60,6 +60,15 @@
         .avatar-container:hover img {
             transform: scale(1.1) rotate(10deg);
         }
+        #logo {
+            width: 60px;
+            height: auto;
+            margin-bottom: 10px; /* Changed from margin-top to margin-bottom */
+            transition: transform 0.6s ease;
+        }
+        #logo:hover {
+            transform: scale(1.2);
+        }
         #randomFact {
             margin-top: 15px;
             color: #e0e0e0;
@@ -134,6 +143,19 @@
             transform: scale(1.3) rotate(-15deg);
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
+        .toggle-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .toggle-button:hover {
+            background-color: #444;
+        }
         @keyframes fadeInUp {
             0% {
                 opacity: 0;
@@ -150,9 +172,15 @@
     <div class="container">
         <h1>Aaron's Portfolio</h1>
 
+        <!-- Logo positioned above Profile Picture -->
+        <img id="logo" src="https://i.ibb.co/H43tt6y/2048px-LEGO-logo-svg.png" alt="Lego Logo">
+
         <div class="avatar-container">
-            <img src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Profile Picture">
+            <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Profile Picture">
         </div>
+
+        <!-- Toggle Button for Profile Picture -->
+        <button class="toggle-button" onclick="toggleProfilePicture()">Switch Profile Picture</button>
 
         <!-- Discord Presence Section -->
         <div class="presence-container" id="presenceContainer">
@@ -176,6 +204,12 @@
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     <script>
+        const customProfilePic = "https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png";
+        const legoLogo = "https://i.ibb.co/H43tt6y/2048px-LEGO-logo-svg.png";
+        const overwatchLogo = "https://i.ibb.co/ZxNcF9B/ezgif-4-15af7686f5.png";
+        let overwatchProfilePic = "";
+        let usingCustomPic = true;
+
         const fetchRandomFact = async () => {
             try {
                 const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/today');
@@ -191,6 +225,17 @@
             }
         };
         fetchRandomFact();
+
+        async function fetchOverwatchProfilePic() {
+            try {
+                const response = await fetch('https://overfast-api.tekrop.fr/players/Aarontendo-2585/summary');
+                const data = await response.json();
+                overwatchProfilePic = data.avatar;
+            } catch (error) {
+                console.error('Error fetching Overwatch profile picture:', error);
+            }
+        }
+        fetchOverwatchProfilePic();
 
         async function fetchDiscordPresence() {
             try {
@@ -247,7 +292,20 @@
             }
         }
         fetchDiscordPresence();
-        setInterval(fetchDiscordPresence, 15000); // Update every 15 seconds
+        setInterval(fetchDiscordPresence, 5000); // Update every 5 seconds
+
+        function toggleProfilePicture() {
+            const profilePicElement = document.getElementById('profilePicture');
+            const logoElement = document.getElementById('logo');
+            if (usingCustomPic) {
+                profilePicElement.src = overwatchProfilePic;
+                logoElement.src = overwatchLogo;
+            } else {
+                profilePicElement.src = customProfilePic;
+                logoElement.src = legoLogo;
+            }
+            usingCustomPic = !usingCustomPic;
+        }
     </script>
 </body>
 </html>
