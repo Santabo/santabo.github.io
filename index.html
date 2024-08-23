@@ -19,9 +19,8 @@
             overflow-x: hidden;
         }
         .container {
-            max-width: 90%;
-            width: 100%;
             max-width: 800px;
+            width: 100%;
             padding: 20px;
             background-color: #1e1e1e;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
@@ -209,8 +208,22 @@
                         document.getElementById('discordActivityDetails').textContent = activityDetails;
 
                         if (activity.assets && activity.assets.large_image) {
-                            let imageUrl = activity.assets.large_image.split('/https/')[1];
-                            imageUrl = `https://${imageUrl}`;
+                            let imageUrl = '';
+
+                            // Check if the image ID is in the old format
+                            if (activity.assets.large_image.startsWith('mp:external/')) {
+                                const parts = activity.assets.large_image.split('/https/');
+                                if (parts.length === 2) {
+                                    imageUrl = `https://${parts[1]}`;
+                                } else {
+                                    imageUrl = 'https://cdn.discordapp.com/app-assets/your_application_id/placeholder.png'; // Fallback URL
+                                }
+                            } else {
+                                // Use the new format
+                                const applicationId = activity.application_id;
+                                const imageId = activity.assets.large_image;
+                                imageUrl = `https://cdn.discordapp.com/app-assets/${applicationId}/${imageId}.png`;
+                            }
 
                             document.getElementById('discordActivityImage').src = imageUrl;
                             document.getElementById('discordActivityImage').alt = activityName;
