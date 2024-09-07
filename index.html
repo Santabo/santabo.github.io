@@ -63,85 +63,20 @@
         #logo {
             width: 60px;
             height: auto;
-            margin-bottom: 10px; /* Changed from margin-top to margin-bottom */
+            margin-bottom: 10px;
             transition: transform 0.6s ease;
         }
         #logo:hover {
             transform: scale(1.2);
         }
-        #randomFact {
+        #albumArt {
+            width: 120px;
             margin-top: 15px;
-            color: #e0e0e0;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
         }
-        #randomFact h2 {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffffff;
-        }
-        #randomFact p {
-            font-size: 1rem;
-            color: #bdbdbd;
-        }
-        .presence-container {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: transparent;
-            box-shadow: none;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-        }
-        #discordActivity {
-            text-align: center;
-        }
-        #discordActivityTitle {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffffff;
-            margin-bottom: 15px;
-        }
-        #discordActivityImage {
-            max-width: 120px;
-            max-height: 120px;
-            border-radius: 10px;
-            margin: 10px 0;
-            transition: transform 0.4s ease, opacity 0.4s ease;
-        }
-        #discordActivityImage:hover {
-            transform: scale(1.2);
-            opacity: 0.9;
-        }
-        #discordActivityName {
-            font-size: 1rem;
-            font-weight: normal;
-            color: #ffffff;
-            margin-bottom: 5px;
-        }
-        #discordActivityDetails {
-            font-size: 0.9rem;
-            color: #bdbdbd;
-        }
-        .social-icons {
-            margin-top: 15px;
-            opacity: 0;
-            animation: fadeInUp 1s forwards;
-        }
-        .social-icons a {
-            margin: 0 0.5rem;
-            color: #e0e0e0;
-            text-decoration: none;
+        #songTitle {
             font-size: 1.2rem;
-            transition: color 0.3s ease, transform 0.6s ease, box-shadow 0.6s ease;
-        }
-        .social-icons a:hover {
+            margin-top: 10px;
             color: #ffffff;
-            transform: scale(1.3) rotate(-15deg);
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
         }
         .toggle-button {
             margin-top: 15px;
@@ -179,6 +114,16 @@
             <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Profile Picture">
         </div>
 
+        <!-- Album Art and Song Title -->
+        <img id="albumArt" src="https://i.ibb.co/DkHZXG6/icon.jpg" alt="Album Art">
+        <p id="songTitle">Song: I'm a Winner</p>
+
+        <!-- Background Music -->
+        <audio autoplay loop>
+            <source src="https://fortnite.gg/img/items/14694/audio.mp3" type="audio/mp3">
+            Your browser does not support the audio element.
+        </audio>
+
         <!-- Toggle Button for Profile Picture -->
         <button class="toggle-button" onclick="toggleProfilePicture()">Switch Profile Picture</button>
 
@@ -192,11 +137,13 @@
             </div>
         </div>
 
+        <!-- Random Fact Section -->
         <div id="randomFact">
             <h2>Random Fact of the Day</h2>
             <p id="factText">Loading...</p>
         </div>
 
+        <!-- Social Icons -->
         <div class="social-icons">
             <a href="https://github.com/santabo" target="_blank"><i class="fab fa-github"></i></a>
         </div>
@@ -280,29 +227,21 @@
                         document.getElementById('discordActivityName').textContent = "No activity detected.";
                         document.getElementById('discordActivityDetails').textContent = "";
                         document.getElementById('discordActivityImage').src = "";
+                        document.getElementById('discordActivityImage').alt = "No image available";
                     }
-                } else {
-                    document.getElementById('discordActivityName').textContent = "Failed to load activity.";
-                    document.getElementById('discordActivityDetails').textContent = "";
                 }
             } catch (error) {
                 console.error('Error fetching Discord presence:', error);
-                document.getElementById('discordActivityName').textContent = "Error loading activity.";
-                document.getElementById('discordActivityDetails').textContent = "";
             }
         }
         fetchDiscordPresence();
-        setInterval(fetchDiscordPresence, 5000); // Update every 5 seconds
 
         function toggleProfilePicture() {
             const profilePicElement = document.getElementById('profilePicture');
-            const logoElement = document.getElementById('logo');
             if (usingCustomPic) {
-                profilePicElement.src = overwatchProfilePic;
-                logoElement.src = overwatchLogo;
+                profilePicElement.src = overwatchProfilePic || legoLogo;
             } else {
                 profilePicElement.src = customProfilePic;
-                logoElement.src = legoLogo;
             }
             usingCustomPic = !usingCustomPic;
         }
