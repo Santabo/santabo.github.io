@@ -1,9 +1,3 @@
-const customProfilePic = "https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png";
-const legoLogo = "https://i.postimg.cc/90xC30g5/LEGO-logo-svg.png";
-const overwatchLogo = "https://i.ibb.co/ZxNcF9B/ezgif-4-15af7686f5.png";
-let overwatchProfilePic = "";
-let usingCustomPic = true;
-
 const fetchRandomFact = async () => {
     try {
         const response = await fetch('https://uselessfacts.jsph.pl/api/v2/facts/today');
@@ -19,17 +13,6 @@ const fetchRandomFact = async () => {
     }
 };
 fetchRandomFact();
-
-async function fetchOverwatchProfilePic() {
-    try {
-        const response = await fetch('https://overfast-api.tekrop.fr/players/Aarontendo-2585/summary');
-        const data = await response.json();
-        overwatchProfilePic = data.avatar;
-    } catch (error) {
-        console.error('Error fetching Overwatch profile picture:', error);
-    }
-}
-fetchOverwatchProfilePic();
 
 async function fetchDiscordPresence() {
     try {
@@ -49,14 +32,16 @@ async function fetchDiscordPresence() {
                 if (activity.assets && activity.assets.large_image) {
                     let imageUrl = '';
 
+                    // Check if the image ID is in the old format
                     if (activity.assets.large_image.startsWith('mp:external/')) {
                         const parts = activity.assets.large_image.split('/https/');
                         if (parts.length === 2) {
                             imageUrl = `https://${parts[1]}`;
                         } else {
-                            imageUrl = 'https://cdn.discordapp.com/app-assets/your_application_id/placeholder.png';
+                            imageUrl = 'https://cdn.discordapp.com/app-assets/your_application_id/placeholder.png'; // Fallback URL
                         }
                     } else {
+                        // Use the new format
                         const applicationId = activity.application_id;
                         const imageId = activity.assets.large_image;
                         imageUrl = `https://cdn.discordapp.com/app-assets/${applicationId}/${imageId}.png`;
@@ -80,13 +65,3 @@ async function fetchDiscordPresence() {
     }
 }
 fetchDiscordPresence();
-
-function toggleProfilePicture() {
-    const profilePicElement = document.getElementById('profilePicture');
-    if (usingCustomPic) {
-        profilePicElement.src = overwatchProfilePic || legoLogo;
-    } else {
-        profilePicElement.src = customProfilePic;
-    }
-    usingCustomPic = !usingCustomPic;
-}
