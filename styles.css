@@ -70,10 +70,19 @@ h1:hover, h2:hover {
     transform: scale(1.2);
 }
 
-#albumArt {
+#discordActivityImage {
+    width: 120px;
+    height: auto;
+    margin-top: 15px;
+    object-fit: cover;
+}
+
+#albumArt, #discordActivityImage {
     width: 120px;
     margin-top: 15px;
+    object-fit: cover;
 }
+
 
 #songTitle {
     font-size: 1.2rem;
