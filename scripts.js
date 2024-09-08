@@ -65,3 +65,39 @@ async function fetchDiscordPresence() {
     }
 }
 fetchDiscordPresence();
+
+// Playlist functionality
+const songs = [
+    {
+        title: "I'm a Winner",
+        src: "https://fortnite.gg/img/items/14694/audio.mp3",
+        albumArt: "https://i.ibb.co/DkHZXG6/icon.jpg"
+    },
+    {
+        title: "Stay by The Kid LAROI",
+        src: "https://fortnite.gg/img/items/9047/audio.mp3",
+        albumArt: "https://i.ibb.co/RGnPG6h/Stay-Cover-Art-Music-Fortnite.png"
+    }
+];
+
+let currentSongIndex = 0;
+const audioPlayer = document.getElementById('audioPlayer');
+const albumArt = document.getElementById('albumArt');
+const songTitle = document.getElementById('songTitle');
+
+// Function to play the current song
+function playSong(index) {
+    songTitle.textContent = `Song: ${songs[index].title}`;
+    albumArt.src = songs[index].albumArt;
+    audioPlayer.src = songs[index].src;
+    audioPlayer.play();
+}
+
+// Play the next song when the current one ends
+audioPlayer.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+    playSong(currentSongIndex);
+});
+
+// Start the playlist by playing the first song
+playSong(currentSongIndex);
