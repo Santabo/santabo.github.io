@@ -66,14 +66,38 @@ async function fetchDiscordPresence() {
 }
 fetchDiscordPresence();
 
-// Pause other songs when one is played
-const audio1 = document.getElementById('audio1');
-const audio2 = document.getElementById('audio2');
+// Playlist functionality
+const songs = [
+    {
+        title: "I'm a Winner",
+        src: "https://fortnite.gg/img/items/14694/audio.mp3",
+        albumArt: "https://i.ibb.co/DkHZXG6/icon.jpg"
+    },
+    {
+        title: "Stay by The Kid LAROI",
+        src: "https://fortnite.gg/img/items/9047/audio.mp3",
+        albumArt: "https://i.ibb.co/RGnPG6h/Stay-Cover-Art-Music-Fortnite.png"
+    }
+];
 
-audio1.addEventListener('play', () => {
-    audio2.pause();
+let currentSongIndex = 0;
+const audioPlayer = document.getElementById('audioPlayer');
+const albumArt = document.getElementById('albumArt');
+const songTitle = document.getElementById('songTitle');
+
+// Function to play the current song
+function playSong(index) {
+    songTitle.textContent = `Song: ${songs[index].title}`;
+    albumArt.src = songs[index].albumArt;
+    audioPlayer.src = songs[index].src;
+    audioPlayer.play();
+}
+
+// Play the next song when the current one ends
+audioPlayer.addEventListener('ended', () => {
+    currentSongIndex = (currentSongIndex + 1) % songs.length; // Loop back to the first song
+    playSong(currentSongIndex);
 });
 
-audio2.addEventListener('play', () => {
-    audio1.pause();
-});
+// Start the playlist by playing the first song
+playSong(currentSongIndex);
