@@ -7,52 +7,85 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1e;
+            color: #e0e0e0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00adb5;
+        }
+
+        .avatar-container {
+            margin: 20px 0;
+        }
+
+        #profilePicture {
+            width: 150px;
+            border-radius: 50%;
+            border: 3px solid #00adb5;
+        }
+
+        .social-icons {
+            margin-top: 30px;
+        }
+
+        .social-icons a {
+            color: #e0e0e0;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #00adb5;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #00adb5;
+        }
+
+        footer p {
+            margin: 0;
+            color: #00adb5;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Aaron's Portfolio</h1>
-
-        <!-- Logo positioned above Profile Picture -->
-        <img id="logo" src="https://i.postimg.cc/90xC30g5/LEGO-logo-svg.png" alt="Lego Logo">
 
         <!-- Profile Picture -->
         <div class="avatar-container">
             <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Profile Picture">
         </div>
 
-        <!-- Song Playlist -->
-        <div class="song">
-            <img id="albumArt" src="https://i.ibb.co/DkHZXG6/icon.jpg" alt="Album Art">
-            <p id="songTitle">Song: I'm a Winner</p>
-            <audio id="audioPlayer" autoplay>
-                <source id="audioSource" src="https://fortnite.gg/img/items/14694/audio.mp3" type="audio/mp3">
-                Your browser does not support the audio element.
-            </audio>
-        </div>
-
-        <!-- Discord Presence Section -->
-        <div class="presence-container" id="presenceContainer">
-            <h2 id="discordActivityTitle">Current Discord Activity</h2>
-            <div id="discordActivity">
-                <img id="discordActivityImage" src="" alt="">
-                <p id="discordActivityName">Loading activity...</p>
-                <p id="discordActivityDetails"></p>
-            </div>
-        </div>
-
-        <!-- Random Fact Section -->
-        <div id="randomFact">
-            <h2>Random Fact of the Day</h2>
-            <p id="factText">Loading...</p>
-        </div>
-
         <!-- Social Icons -->
         <div class="social-icons">
-            <a href="https://github.com/santabo" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/santabo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
         </div>
+
+        <!-- Footer -->
+		<footer>
+ 		   <p>Designed and developed by Aaron Parry. 2024.</p>
+		</footer>
+
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <script src="scripts.js"></script>
 </body>
 </html>
