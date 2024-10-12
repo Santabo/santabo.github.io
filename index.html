@@ -38,6 +38,7 @@
             margin: 20px 0;
             opacity: 0;
             animation: fadeIn 1.5s ease-in forwards;
+            position: relative; /* Added for watermark positioning */
         }
 
         #profilePicture {
@@ -50,6 +51,16 @@
         #profilePicture:hover {
             transform: scale(1.1);
             box-shadow: 0 0 20px rgba(168, 230, 0, 0.8); /* Lime green shadow */
+        }
+
+        .watermark {
+            position: absolute;
+            top: 20px; /* Adjust as needed */
+            left: 20px; /* Adjust as needed */
+            opacity: 0.5; /* Adjust transparency */
+            font-size: 1.5rem;
+            color: #a8e600; /* Lime green */
+            pointer-events: none; /* Prevent interaction */
         }
 
         .social-icons {
@@ -132,6 +143,12 @@
         }
 
     </style>
+    <script>
+        // Disable right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+    </script>
 </head>
 <body>
     <div class="container">
