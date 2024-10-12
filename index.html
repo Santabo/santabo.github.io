@@ -13,7 +13,7 @@
             margin: 0;
             padding: 0;
             background-color: #1c1c1e;
-            color: #e0e0e0;
+            color: #a8e600; /* Lime green */
             overflow-x: hidden;
         }
 
@@ -53,29 +53,17 @@
             box-shadow: 0 0 20px rgba(168, 230, 0, 0.8); /* Lime green shadow */
         }
 
-        .watermark {
-            position: absolute;
-            top: 20px; /* Adjust as needed */
-            left: 20px; /* Adjust as needed */
-            opacity: 0.5; /* Adjust transparency */
-            font-size: 1.5rem;
-            color: #a8e600; /* Lime green */
-            pointer-events: none; /* Prevent interaction */
-        }
 
-        .social-icons {
-            margin-top: 30px;
-            opacity: 0;
-            animation: fadeIn 2s ease-in forwards;
-        }
+		.about-me {
+   			 margin: 20px;
+   			 font-size: 1.2rem;
+  			  line-height: 1.5;
+  			  color: #a8e600; /* Lime green */
+  			  opacity: 0;
+   			 animation: fadeIn 2s ease-in forwards;
+		}
 
-        .social-icons a {
-            color: #e0e0e0;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s ease, transform 0.3s ease;
-        }
+
 
         .social-icons a:hover {
             color: #a8e600; /* Lime green on hover */
@@ -141,7 +129,6 @@
                 font-size: 1.2rem;
             }
         }
-
     </style>
     <script>
         // Disable right-click
@@ -159,20 +146,12 @@
             <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Aaron's Profile Picture">
         </div>
 
-        <!-- Social Icons -->
-        <div class="social-icons">
-            <a href="https://github.com/santabo" target="_blank" aria-label="GitHub">
-                <i class="fab fa-github" aria-hidden="true"></i>
-            </a>
-            <!-- Add more social icons here if needed -->
+        <!-- About Me Section -->
+        <div class="about-me">
+            <p style="color: #ffffff;">Hello! I'm Aaron, a passionate developer with a love for coding and technology. I enjoy creating projects that challenge my skills and allow me to learn new things. Welcome to my portfolio, where you can explore my work!</p>
         </div>
 
         <!-- Footer -->
         <footer>
             <p>Designed and developed by Aaron. 2024.</p>
         </footer>
-    </div>
-
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</body>
-</html>
