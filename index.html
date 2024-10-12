@@ -14,31 +14,48 @@
             padding: 0;
             background-color: #1c1c1e;
             color: #e0e0e0;
+            overflow-x: hidden;
         }
 
         .container {
             text-align: center;
             padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1s ease-in forwards;
         }
 
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #00adb5;
+            color: #a8e600; /* Lime green */
+            opacity: 0;
+            transform: translateY(-30px);
+            animation: fadeInDown 1.2s ease-in-out forwards;
         }
 
         .avatar-container {
             margin: 20px 0;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-in forwards;
         }
 
         #profilePicture {
             width: 150px;
             border-radius: 50%;
-            border: 3px solid #00adb5;
+            border: 3px solid #a8e600; /* Lime green */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #profilePicture:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px rgba(168, 230, 0, 0.8); /* Lime green shadow */
         }
 
         .social-icons {
             margin-top: 30px;
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
         }
 
         .social-icons a {
@@ -46,23 +63,74 @@
             text-decoration: none;
             margin: 0 10px;
             font-size: 1.5rem;
-            transition: color 0.3s ease;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-icons a:hover {
-            color: #00adb5;
+            color: #a8e600; /* Lime green on hover */
+            transform: scale(1.2);
         }
 
         footer {
             margin-top: 50px;
             font-size: 0.9rem;
-            color: #00adb5;
+            color: #a8e600; /* Lime green */
+            opacity: 0;
+            animation: fadeInUp 2.5s ease-in forwards;
         }
 
         footer p {
             margin: 0;
-            color: #00adb5;
+            color: #a8e600; /* Lime green */
         }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            0% {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            #profilePicture {
+                width: 120px;
+            }
+
+            .social-icons a {
+                font-size: 1.2rem;
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -71,19 +139,21 @@
 
         <!-- Profile Picture -->
         <div class="avatar-container">
-            <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Profile Picture">
+            <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Aaron's Profile Picture">
         </div>
 
         <!-- Social Icons -->
         <div class="social-icons">
-            <a href="https://github.com/santabo" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+            <a href="https://github.com/santabo" target="_blank" aria-label="GitHub">
+                <i class="fab fa-github" aria-hidden="true"></i>
+            </a>
+            <!-- Add more social icons here if needed -->
         </div>
 
         <!-- Footer -->
-		<footer>
- 		   <p>Designed and developed by Aaron. 2024.</p>
-		</footer>
-
+        <footer>
+            <p>Designed and developed by Aaron. 2024.</p>
+        </footer>
     </div>
 
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
