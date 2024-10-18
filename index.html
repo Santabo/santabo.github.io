@@ -53,17 +53,14 @@
             box-shadow: 0 0 20px rgba(168, 230, 0, 0.8); /* Lime green shadow */
         }
 
-
-		.about-me {
-   			 margin: 20px;
-   			 font-size: 1.2rem;
-  			  line-height: 1.5;
-  			  color: #a8e600; /* Lime green */
-  			  opacity: 0;
-   			 animation: fadeIn 2s ease-in forwards;
-		}
-
-
+        .about-me {
+            margin: 20px;
+            font-size: 1.2rem;
+            line-height: 1.5;
+            color: #a8e600; /* Lime green */
+            opacity: 0;
+            animation: fadeIn 2s ease-in forwards;
+        }
 
         .social-icons a:hover {
             color: #a8e600; /* Lime green on hover */
@@ -135,6 +132,20 @@
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
+
+        const userId = '789872551731527690';
+
+        // Fetch the user's Discord avatar using the Lanyard API
+        fetch(`https://api.lanyard.rest/v1/users/${userId}`)
+            .then(response => response.json())
+            .then(data => {
+                const avatarHash = data.data.discord_user.avatar;
+                const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png`;
+                document.getElementById('profilePicture').src = avatarUrl;
+            })
+            .catch(error => {
+                console.error('Error fetching avatar:', error);
+            });
     </script>
 </head>
 <body>
@@ -143,7 +154,7 @@
 
         <!-- Profile Picture -->
         <div class="avatar-container">
-            <img id="profilePicture" src="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png" alt="Aaron's Profile Picture">
+            <img id="profilePicture" src="" alt="Aaron's Profile Picture">
         </div>
 
         <!-- About Me Section -->
@@ -155,3 +166,6 @@
         <footer>
             <p>Designed and developed by Aaron. 2024.</p>
         </footer>
+    </div>
+</body>
+</html>
