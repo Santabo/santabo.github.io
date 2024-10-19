@@ -56,10 +56,10 @@
         /* Decoration styling */
         #avatarDecoration {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: -10%; /* Move the decoration slightly upwards */
+            left: -10%; /* Move the decoration slightly to the left */
+            width: 120%; /* Set the decoration width to 1.2x the avatar size */
+            height: 120%; /* Set the decoration height to 1.2x the avatar size */
             pointer-events: none; /* So it doesn't interfere with hover */
         }
 
@@ -123,8 +123,16 @@
                 font-size: 2rem;
             }
 
-            #profilePicture {
+            .avatar-container {
                 width: 120px;
+                height: 120px;
+            }
+
+            #avatarDecoration {
+                width: 120%; /* Keep decoration scaling consistent */
+                height: 120%;
+                top: -10%;
+                left: -10%;
             }
         }
     </style>
