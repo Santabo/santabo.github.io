@@ -5,19 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aaron's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png">
     <style>
-        /* Styles */
+        /* Global Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1c1c1e;
-            color: #a8e600;
+            color: #ff9800;
             overflow-x: hidden;
         }
 
+        /* Container and Animation */
         .container {
             text-align: center;
             padding: 20px;
@@ -26,15 +26,17 @@
             animation: fadeIn 1s ease-in forwards;
         }
 
+        /* Header */
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #a8e600;
+            color: #ff9800;
             opacity: 0;
             transform: translateY(-30px);
             animation: fadeInDown 1.2s ease-in-out forwards;
         }
 
+        /* Avatar Container */
         .avatar-container {
             display: flex;
             justify-content: center;
@@ -50,11 +52,11 @@
         #profilePicture {
             width: 100%;
             border-radius: 50%;
-            border: 3px solid #a8e600;
-            box-shadow: 0 0 20px rgba(168, 230, 0, 0.8);
+            border: 3px solid #ff9800;
+            box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
         }
 
-        /* Decoration styling */
+        /* Avatar Decoration */
         #avatarDecoration {
             position: absolute;
             top: -10%;
@@ -64,28 +66,31 @@
             pointer-events: none;
         }
 
+        /* About Me Section */
         .about-me {
             margin: 20px;
             font-size: 1.2rem;
             line-height: 1.5;
-            color: #a8e600;
+            color: #ffffff;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
         }
 
+        /* Footer */
         footer {
             margin-top: 50px;
             font-size: 0.9rem;
-            color: #a8e600;
+            color: #ff9800;
             opacity: 0;
             animation: fadeInUp 2.5s ease-in forwards;
         }
 
         footer p {
             margin: 0;
-            color: #a8e600;
+            color: #ff9800;
         }
 
+        /* Keyframes */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -101,6 +106,7 @@
             100% { opacity: 1; transform: translateY(0); }
         }
 
+        /* Responsive Design */
         @media (max-width: 768px) {
             h1 { font-size: 2rem; }
             .avatar-container { width: 120px; height: 120px; }
@@ -157,7 +163,7 @@
 
         <!-- About Me Section -->
         <div class="about-me">
-            <p style="color: #ffffff;">Hello! I'm Aaron, a passionate developer with a love for coding and technology. I enjoy creating projects that challenge my skills and allow me to learn new things. Welcome to my portfolio, where you can explore my work!</p>
+            <p>Hello! I'm Aaron, a passionate developer with a love for coding and technology. I enjoy creating projects that challenge my skills and allow me to learn new things. Welcome to my portfolio, where you can explore my work!</p>
         </div>
 
         <!-- Footer -->
