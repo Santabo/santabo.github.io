@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png">
     <style>
+        /* Styles */
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #1c1c1e;
-            color: #a8e600; /* Lime green */
+            color: #a8e600;
             overflow-x: hidden;
         }
 
@@ -28,7 +29,7 @@
         h1 {
             font-size: 2.5rem;
             margin-bottom: 20px;
-            color: #a8e600; /* Lime green */
+            color: #a8e600;
             opacity: 0;
             transform: translateY(-30px);
             animation: fadeInDown 1.2s ease-in-out forwards;
@@ -49,25 +50,25 @@
         #profilePicture {
             width: 100%;
             border-radius: 50%;
-            border: 3px solid #a8e600; /* Lime green */
-            box-shadow: 0 0 20px rgba(168, 230, 0, 0.8); /* Lime green shadow */
+            border: 3px solid #a8e600;
+            box-shadow: 0 0 20px rgba(168, 230, 0, 0.8);
         }
 
         /* Decoration styling */
         #avatarDecoration {
             position: absolute;
-            top: -10%; /* Move the decoration slightly upwards */
-            left: -10%; /* Move the decoration slightly to the left */
-            width: 120%; /* Set the decoration width to 1.2x the avatar size */
-            height: 120%; /* Set the decoration height to 1.2x the avatar size */
-            pointer-events: none; /* So it doesn't interfere with hover */
+            top: -10%;
+            left: -10%;
+            width: 120%;
+            height: 120%;
+            pointer-events: none;
         }
 
         .about-me {
             margin: 20px;
             font-size: 1.2rem;
             line-height: 1.5;
-            color: #a8e600; /* Lime green */
+            color: #a8e600;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
         }
@@ -75,65 +76,35 @@
         footer {
             margin-top: 50px;
             font-size: 0.9rem;
-            color: #a8e600; /* Lime green */
+            color: #a8e600;
             opacity: 0;
             animation: fadeInUp 2.5s ease-in forwards;
         }
 
         footer p {
             margin: 0;
-            color: #a8e600; /* Lime green */
+            color: #a8e600;
         }
 
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .avatar-container {
-                width: 120px;
-                height: 120px;
-            }
-
-            #avatarDecoration {
-                width: 120%; /* Keep decoration scaling consistent */
-                height: 120%;
-                top: -10%;
-                left: -10%;
-            }
+            h1 { font-size: 2rem; }
+            .avatar-container { width: 120px; height: 120px; }
+            #avatarDecoration { width: 120%; height: 120%; top: -10%; left: -10%; }
         }
     </style>
     <script>
@@ -149,13 +120,25 @@
             .then(response => response.json())
             .then(data => {
                 const avatarHash = data.data.discord_user.avatar;
-                const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png`;
-                const decorationAsset = data.data.discord_user.avatar_decoration_data.asset;
-                const decorationUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationAsset}.png?size=512&passthrough=true`;
+                const profilePicture = document.getElementById('profilePicture');
+                const avatarDecoration = document.getElementById('avatarDecoration');
 
-                // Set the avatar and decoration URLs
-                document.getElementById('profilePicture').src = avatarUrl;
-                document.getElementById('avatarDecoration').src = decorationUrl;
+                // Set avatar image if available
+                if (avatarHash) {
+                    const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png`;
+                    profilePicture.src = avatarUrl;
+                } else {
+                    profilePicture.style.display = 'none';
+                }
+
+                // Set decoration image if available
+                if (data.data.discord_user.avatar_decoration_data?.asset) {
+                    const decorationAsset = data.data.discord_user.avatar_decoration_data.asset;
+                    const decorationUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationAsset}.png?size=512&passthrough=true`;
+                    avatarDecoration.src = decorationUrl;
+                } else {
+                    avatarDecoration.style.display = 'none';
+                }
             })
             .catch(error => {
                 console.error('Error fetching avatar or decoration:', error);
