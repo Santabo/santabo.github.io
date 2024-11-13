@@ -15,11 +15,11 @@
             background-color: #1c1c1e;
             color: #ff9800;
             overflow-x: hidden;
+            text-align: center;
         }
 
         /* Container and Animation */
         .container {
-            text-align: center;
             padding: 20px;
             opacity: 0;
             transform: translateY(20px);
@@ -38,7 +38,7 @@
 
         /* Avatar Container */
         .avatar-container {
-            display: flex;
+            display: inline-flex;
             justify-content: center;
             align-items: center;
             position: relative;
@@ -68,7 +68,8 @@
 
         /* About Me Section */
         .about-me {
-            margin: 20px;
+            margin: 20px auto;
+            max-width: 600px;
             font-size: 1.2rem;
             line-height: 1.5;
             color: #ffffff;
@@ -83,11 +84,6 @@
             color: #ff9800;
             opacity: 0;
             animation: fadeInUp 2.5s ease-in forwards;
-        }
-
-        footer p {
-            margin: 0;
-            color: #ff9800;
         }
 
         /* Keyframes */
