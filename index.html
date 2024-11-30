@@ -6,6 +6,9 @@
     <title>Aaron's Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+
     <style>
         /* Global Styles */
         body {
@@ -56,7 +59,6 @@
             box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
         }
 
-        /* Avatar Decoration */
         #avatarDecoration {
             position: absolute;
             top: -10%;
@@ -86,6 +88,22 @@
             animation: fadeInUp 2.5s ease-in forwards;
         }
 
+        footer a {
+            color: #ff9800;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s ease-in-out;
+        }
+
+        footer a:hover {
+            color: #ffffff;
+        }
+
+        footer a .fa-brands {
+            vertical-align: middle;
+        }
+
         /* Keyframes */
         @keyframes fadeIn {
             0% { opacity: 0; transform: translateY(20px); }
@@ -110,7 +128,6 @@
         }
     </style>
     <script>
-        // Disable right-click
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
@@ -125,7 +142,6 @@
                 const profilePicture = document.getElementById('profilePicture');
                 const avatarDecoration = document.getElementById('avatarDecoration');
 
-                // Set avatar image if available
                 if (avatarHash) {
                     const avatarUrl = `https://cdn.discordapp.com/avatars/${userId}/${avatarHash}.png`;
                     profilePicture.src = avatarUrl;
@@ -133,7 +149,6 @@
                     profilePicture.style.display = 'none';
                 }
 
-                // Set decoration image if available
                 if (data.data.discord_user.avatar_decoration_data?.asset) {
                     const decorationAsset = data.data.discord_user.avatar_decoration_data.asset;
                     const decorationUrl = `https://cdn.discordapp.com/avatar-decoration-presets/${decorationAsset}.png?size=512&passthrough=true`;
@@ -142,9 +157,7 @@
                     avatarDecoration.style.display = 'none';
                 }
             })
-            .catch(error => {
-                console.error('Error fetching avatar or decoration:', error);
-            });
+            .catch(error => console.error('Error fetching avatar or decoration:', error));
     </script>
 </head>
 <body>
@@ -165,6 +178,14 @@
         <!-- Footer -->
         <footer>
             <p>Designed and developed by Aaron. 2024.</p>
+            <p>
+                <a href="https://bsky.app/profile/aarontendo.bsky.social" target="_blank">
+                    <i class="fa-brands fa-bluesky"></i>
+                </a>
+                <a href="https://discordapp.com/users/789872551731527690" target="_blank">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+            </p>
         </footer>
     </div>
 </body>
