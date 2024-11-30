@@ -38,6 +38,7 @@
             opacity: 0;
             transform: translateY(-30px);
             animation: fadeInDown 1.2s ease-in-out forwards;
+            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
         }
 
         /* Avatar Container */
@@ -158,6 +159,29 @@
             e.preventDefault();
         });
 
+        // Tracking mouse proximity to the heading
+        const heading = document.querySelector("h1");
+
+        document.addEventListener("mousemove", (event) => {
+            const headingRect = heading.getBoundingClientRect();
+            const headingCenterX = headingRect.left + headingRect.width / 2;
+            const headingCenterY = headingRect.top + headingRect.height / 2;
+
+            const distance = Math.sqrt(
+                Math.pow(event.clientX - headingCenterX, 2) + Math.pow(event.clientY - headingCenterY, 2)
+            );
+
+            if (distance < 100) { // If mouse is within 100px of the heading
+                heading.style.color = "#ffcc00";  // Change text color
+                heading.style.transform = "translateY(-10px)";  // Slightly raise the text
+                heading.style.textShadow = "0 0 15px rgba(255, 152, 0, 0.8), 0 0 25px rgba(255, 152, 0, 1)"; // Glow effect
+            } else {
+                heading.style.color = "#ff9800"; // Default color
+                heading.style.transform = "translateY(0)";  // Normal position
+                heading.style.textShadow = "none"; // Remove glow effect
+            }
+        });
+
         const userId = '789872551731527690';
 
         // Fetch the user's Discord avatar and decoration using the Lanyard API
@@ -209,11 +233,14 @@
             <a href="https://discordapp.com/users/789872551731527690" target="_blank">
                 <i class="fa-brands fa-discord"></i>
             </a>
+            <a href="https://github.com/yeetov" target="_blank">
+                <i class="fa-brands fa-github"></i>
+            </a>
         </div>
 
         <!-- Footer -->
         <footer>
-            <p>Designed and developed by Aaron. 2024.</p>
+            <p>&copy; 2024 Aaron's Portfolio</p>
         </footer>
     </div>
 </body>
