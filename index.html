@@ -79,16 +79,14 @@
             animation: fadeIn 2s ease-in forwards;
         }
 
-        /* Footer */
-        footer {
-            margin-top: 50px;
-            font-size: 0.9rem;
-            color: #ff9800;
+        /* Social Icons Section */
+        .social-icons {
+            margin: 30px 0;
             opacity: 0;
-            animation: fadeInUp 2.5s ease-in forwards;
+            animation: fadeIn 2s ease-in forwards;
         }
 
-        footer a {
+        .social-icons a {
             color: #ff9800;
             text-decoration: none;
             margin: 0 10px;
@@ -96,12 +94,17 @@
             transition: color 0.3s ease-in-out;
         }
 
-        footer a:hover {
+        .social-icons a:hover {
             color: #ffffff;
         }
 
-        footer a .fa-brands {
-            vertical-align: middle;
+        /* Footer */
+        footer {
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #ff9800;
+            opacity: 0;
+            animation: fadeInUp 2.5s ease-in forwards;
         }
 
         /* Keyframes */
@@ -175,17 +178,19 @@
             <p>Hello! I'm Aaron, a passionate developer with a love for coding and technology. I enjoy creating projects that challenge my skills and allow me to learn new things. Welcome to my portfolio, where you can explore my work!</p>
         </div>
 
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="https://bsky.app/profile/aarontendo.bsky.social" target="_blank">
+                <i class="fa-brands fa-bluesky"></i>
+            </a>
+            <a href="https://discordapp.com/users/789872551731527690" target="_blank">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+        </div>
+
         <!-- Footer -->
         <footer>
             <p>Designed and developed by Aaron. 2024.</p>
-            <p>
-                <a href="https://bsky.app/profile/aarontendo.bsky.social" target="_blank">
-                    <i class="fa-brands fa-bluesky"></i>
-                </a>
-                <a href="https://discordapp.com/users/789872551731527690" target="_blank">
-                    <i class="fa-brands fa-discord"></i>
-                </a>
-            </p>
         </footer>
     </div>
 </body>
