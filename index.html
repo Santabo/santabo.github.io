@@ -8,6 +8,7 @@
     <link rel="icon" type="image/x-icon" href="https://i.ibb.co/SsGZF4Z/Aaron-Minifig.png">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="preload" href="https://cdn.discordapp.com/avatars/789872551731527690/your-avatar-hash.png" as="image">
 
     <style>
         /* Global Styles */
@@ -50,6 +51,11 @@
             margin: 20px auto;
             opacity: 0;
             animation: fadeIn 1.5s ease-in forwards;
+            transition: transform 0.3s ease;
+        }
+
+        .avatar-container:hover {
+            transform: scale(1.1);
         }
 
         #profilePicture {
@@ -57,6 +63,11 @@
             border-radius: 50%;
             border: 3px solid #ff9800;
             box-shadow: 0 0 20px rgba(255, 152, 0, 0.8);
+            transition: box-shadow 0.3s ease;
+        }
+
+        #profilePicture:hover {
+            box-shadow: 0 0 25px rgba(255, 152, 0, 1);
         }
 
         #avatarDecoration {
@@ -77,6 +88,7 @@
             color: #ffffff;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
+            padding: 0 10px;
         }
 
         /* Social Icons Section */
@@ -89,13 +101,14 @@
         .social-icons a {
             color: #ff9800;
             text-decoration: none;
-            margin: 0 10px;
-            font-size: 1.5rem;
-            transition: color 0.3s ease-in-out;
+            margin: 0 15px;
+            font-size: 2rem;
+            transition: color 0.3s ease, transform 0.3s ease;
         }
 
         .social-icons a:hover {
             color: #ffffff;
+            transform: scale(1.2);
         }
 
         /* Footer */
@@ -105,6 +118,11 @@
             color: #ff9800;
             opacity: 0;
             animation: fadeInUp 2.5s ease-in forwards;
+            padding: 10px 0;
+        }
+
+        footer p {
+            margin: 0;
         }
 
         /* Keyframes */
@@ -128,8 +146,13 @@
             h1 { font-size: 2rem; }
             .avatar-container { width: 120px; height: 120px; }
             #avatarDecoration { width: 120%; height: 120%; top: -10%; left: -10%; }
+            .social-icons a {
+                font-size: 1.8rem;
+                margin: 0 8px;
+            }
         }
     </style>
+
     <script>
         document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
