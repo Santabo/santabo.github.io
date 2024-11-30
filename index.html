@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +20,6 @@
             color: #ff9800;
             overflow-x: hidden;
             text-align: center;
-            line-height: 1.5;
         }
 
         /* Container and Animation */
@@ -87,6 +85,7 @@
             margin: 20px auto;
             max-width: 600px;
             font-size: 1.2rem;
+            line-height: 1.5;
             color: #ffffff;
             opacity: 0;
             animation: fadeIn 2s ease-in forwards;
@@ -129,59 +128,25 @@
 
         /* Keyframes */
         @keyframes fadeIn {
-            0% {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInDown {
-            0% {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(-30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
-            .avatar-container {
-                width: 120px;
-                height: 120px;
-            }
-
-            #avatarDecoration {
-                width: 120%;
-                height: 120%;
-                top: -10%;
-                left: -10%;
-            }
-
+            h1 { font-size: 2rem; }
+            .avatar-container { width: 120px; height: 120px; }
+            #avatarDecoration { width: 120%; height: 120%; top: -10%; left: -10%; }
             .social-icons a {
                 font-size: 1.8rem;
                 margin: 0 8px;
@@ -190,10 +155,11 @@
     </style>
 
     <script>
-        document.addEventListener('contextmenu', function (e) {
+        document.addEventListener('contextmenu', function(e) {
             e.preventDefault();
         });
 
+        // Tracking mouse proximity to the heading
         const heading = document.querySelector("h1");
 
         document.addEventListener("mousemove", (event) => {
@@ -244,7 +210,6 @@
             .catch(error => console.error('Error fetching avatar or decoration:', error));
     </script>
 </head>
-
 <body>
     <div class="container">
         <h1>Aaron's Portfolio</h1>
@@ -265,19 +230,18 @@
             <a href="https://bsky.app/profile/aarontendo.bsky.social" target="_blank" title="Follow me on Bluesky">
                 <i class="fa-brands fa-bluesky"></i>
             </a>
-            <a href="https://github.com/aaronstorm1" target="_blank" title="Visit my GitHub">
+            <a href="https://discordapp.com/users/789872551731527690" target="_blank" title="Join my Discord">
+                <i class="fa-brands fa-discord"></i>
+            </a>
+            <a href="https://github.com/yeetov" target="_blank" title="Visit my GitHub">
                 <i class="fa-brands fa-github"></i>
             </a>
-            <a href="https://www.instagram.com/aaronstormdev/" target="_blank" title="Follow me on Instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
         </div>
+
+        <!-- Footer -->
+        <footer>
+            <p>Hello</p>
+        </footer>
     </div>
-
-    <!-- Footer -->
-    <footer>
-        <p></p>
-    </footer>
 </body>
-
 </html>
